@@ -52,3 +52,21 @@ def eliminar_libro(id_libro):
     print("Libro eliminado correctamente")
 
 #Listar Libro
+
+def listar_libros():
+    conexion= obtener_conexion()
+    cursor = conexion.cursor(dictionary=True)
+    consulta="""
+Select l.id_libro,
+		l.titulo,
+        l.fecha_publicacion,
+        l.ventas,
+        l.stock,
+        a.seudonimo as autor_libro
+	from libro l 
+inner join autor a on a.id_autor=l.id_autor;"""
+    cursor.execute(consulta)
+    libros= cursor.fetchall()
+    cursor.close()
+    conexion.close()
+    return libros
