@@ -1,6 +1,9 @@
 import streamlit as st
 import pandas as pd
 from libro import insertar_libro, modificar_libro, eliminar_libro, listar_libros
+import mysql.connector
+from mysql.connector import Error
+from conn import obtener_conexion
 
 
 def main():
