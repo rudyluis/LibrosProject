@@ -2,7 +2,7 @@
 import mysql.connector
 from mysql.connector import Error
 import streamlit as st
-from conn import obtener_conexion
+from conexion import obtener_conexion
 
 #Insertar Libro
 def insertar_libro(titulo, fecha_publicacion, ventas, stock, id_autor):
@@ -66,7 +66,7 @@ def listar_libros():
             l.fecha_publicacion,
             l.ventas,
             l.stock,
-            a.seudonimo as autor_libro
+            concat(a.nombre ,' ', a.apellido) as autor_libro
         from libro l 
     inner join autor a on a.id_autor=l.id_autor;"""
     cursor.execute(consulta)
