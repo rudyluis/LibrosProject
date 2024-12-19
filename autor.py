@@ -68,7 +68,7 @@ def eliminar_autor(id_autor):
 def listar_autores():
     conexion = obtener_conexion()
     cursor = conexion.cursor(dictionary=True)
-    consulta = "SELECT * FROM autor"
+    consulta = "SELECT *, concat(nombre,' ', apellido) as nombre_autor FROM autor"
     cursor.execute(consulta)
     autores = cursor.fetchall()
     cursor.close()
